@@ -7,8 +7,8 @@ import org.springframework.http.ResponseEntity;
 public interface Bill {
     Page<Bill> getAllBills(Pageable pageable);
     Bill getBillById(Long billId);
-    Bill createBill(Long billId, Long interestRateId, Long userID, Bill bill);
-    Bill updateBill(Long billId, Long interestRateId, Long userID, Bill billRequest);
+    Bill createBill(Long userID, Bill bill);
+    Bill updateBill(Long billId, Long userID, Bill billRequest);
     ResponseEntity<?> deleteBill(Long billId, Long userID);
     Page<Bill> getAllBillByUserId(Long userId, Pageable pageable);
 }
