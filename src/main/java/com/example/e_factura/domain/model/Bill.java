@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Null;
 import java.io.Serializable;
 import java.util.Calendar;
 
@@ -59,6 +60,9 @@ public class Bill implements Serializable {
     @Column(nullable = false, scale = 2)
     private double finalExpenses;
 
+    @Column(nullable = true, scale = 2)
+    private double retention;
+
     @NotBlank
     @Column(nullable = false)
     private double tcea;
@@ -77,7 +81,7 @@ public class Bill implements Serializable {
 
     public Bill() {
     }
-    public Bill(Long id, String name, Long ruc, Calendar issue, Calendar expiration, double ratePercentage, TypeOfCurrency currency, double nominalValue, double initialExpenses, double finalExpenses, double tcea, double netWorth, double deliveredValue, double receivedValue) {
+    public Bill(Long id, String name, Long ruc, Calendar issue, Calendar expiration, double ratePercentage, TypeOfCurrency currency, double nominalValue, double initialExpenses, double finalExpenses, double retention, double tcea, double netWorth, double deliveredValue, double receivedValue) {
         this.id = id;
         this.name = name;
         this.ruc = ruc;
@@ -88,6 +92,7 @@ public class Bill implements Serializable {
         this.nominalValue = nominalValue;
         this.initialExpenses = initialExpenses;
         this.finalExpenses = finalExpenses;
+        this.retention = retention;
         this.tcea = tcea;
         this.netWorth = netWorth;
         this.deliveredValue = deliveredValue;
@@ -187,6 +192,14 @@ public class Bill implements Serializable {
     }
     public Bill setFinalExpenses(double finalExpenses) {
         this.finalExpenses = finalExpenses;
+        return this;
+    }
+
+    public double getRetention() {
+        return retention;
+    }
+    public Bill setRetention(double retention) {
+        this.retention = retention;
         return this;
     }
 
