@@ -1,10 +1,11 @@
 package com.example.e_factura.domain.service;
 
+import com.example.e_factura.domain.model.Bill;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 
-public interface Bill {
+public interface BillService {
     Page<Bill> getAllBills(Pageable pageable);
     Bill getBillById(Long billId);
     Bill createBill(Long userID, Bill bill);
