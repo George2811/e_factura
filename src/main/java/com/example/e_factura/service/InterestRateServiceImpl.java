@@ -1,6 +1,7 @@
 package com.example.e_factura.service;
 
 import com.example.e_factura.domain.model.InterestRate;
+import com.example.e_factura.domain.model.TypeOfInterestRate;
 import com.example.e_factura.domain.repository.InterestRateRepository;
 import com.example.e_factura.domain.service.InterestRateService;
 import com.example.e_factura.exception.ResourceNotFoundException;
@@ -8,6 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+
+import java.util.Optional;
 
 @Service
 public class InterestRateServiceImpl implements InterestRateService {
@@ -27,6 +30,15 @@ public class InterestRateServiceImpl implements InterestRateService {
 
     @Override
     public InterestRate createInterestRate(InterestRate interestRate) {
+        TypeOfInterestRate type = interestRate.getType();
+        int time = interestRate.getRateTime();
+        int period = interestRate.getCompoundingPeriod();
+
+        InterestRate rate = interestRateRepository.findByTypeAndRateTimeAndCompoundingPeriod(type, time, period);
+
+        if(rate != null){
+            return interestRateRepository.findById(rate.getId()).orElseThrow(() -> new ResourceNotFoundException("Interest Rate", "Id", rate.getId()));
+        }
         return interestRateRepository.save(interestRate);
     }
 }

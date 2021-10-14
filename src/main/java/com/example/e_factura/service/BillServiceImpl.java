@@ -12,6 +12,8 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
+
 
 @Service
 public class BillServiceImpl implements BillService {
@@ -36,14 +38,14 @@ public class BillServiceImpl implements BillService {
     }
 
     @Override
-    public Bill createBill(Long userID, Bill bill) {
-        Long interestRateId = bill.getInterestRate().getId();
+    public Bill createBill(Long userID, Bill bill, Long interestRateId) {
         return userRepository.findById(userID).map(user -> {
-            if(!interestRateRepository.existsById(interestRateId)){
-                throw new ResourceNotFoundException("Interest Rate", "Id", interestRateId);
-            }
-            bill.setUser(user);
-            return billRepository.save(bill);
+            interestRateRepository.findById(interestRateId).map(interestRate -> {
+                bill.setUser(user);
+                bill.setInterestRate(interestRate);
+                return billRepository.save(bill);
+            }).orElseThrow(() -> new ResourceNotFoundException("User", "Id", userID));
+            return new Bill();
         }).orElseThrow(() -> new ResourceNotFoundException("User", "Id", userID));
     }
 

@@ -22,8 +22,8 @@ public class InterestRate implements Serializable {
     @Column(name = "rate_time", nullable = false)
     private int rateTime;
 
-    @Null
-    @Column(name = "compounding_period", nullable = true)
+    @NotBlank
+    @Column(name = "compounding_period", nullable = false)
     private int compoundingPeriod;
 
     public InterestRate() {
