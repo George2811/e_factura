@@ -17,7 +17,7 @@ import java.util.stream.Collectors;
 @RestController
 @RequestMapping("/api/users")
 @CrossOrigin
-public class UserController {
+public class UsersController {
     // TODO: Authentication Controller
     @Autowired
     private ModelMapper mapper;

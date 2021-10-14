@@ -19,7 +19,7 @@ import java.util.stream.Collectors;
 @RestController
 @RequestMapping("/api")
 @CrossOrigin
-public class InterestRateController {
+public class InterestRatesController {
 
     @Autowired
     private ModelMapper mapper;
