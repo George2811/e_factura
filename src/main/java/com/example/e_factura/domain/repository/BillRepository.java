@@ -10,6 +10,6 @@ import java.util.Optional;
 
 public interface BillRepository extends JpaRepository<Bill, Long> {
 
-    Optional<Bill> findById(Long billId);
+    Optional<Bill> findByIdAndUserId(Long billId, Long userId);
     Page<Bill> findByUserId(Long user_id, Pageable pageable);
 }
