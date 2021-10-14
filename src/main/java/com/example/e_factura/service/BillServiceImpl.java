@@ -1,6 +1,7 @@
 package com.example.e_factura.service;
 
 import com.example.e_factura.domain.model.Bill;
+import com.example.e_factura.domain.model.InterestRate;
 import com.example.e_factura.domain.repository.BillRepository;
 import com.example.e_factura.domain.repository.InterestRateRepository;
 import com.example.e_factura.domain.repository.UserRepository;
@@ -38,12 +39,13 @@ public class BillServiceImpl implements BillService {
     @Override
     public Bill createBill(Long userID, Bill bill, Long interestRateId) {
         return userRepository.findById(userID).map(user -> {
-            interestRateRepository.findById(interestRateId).map(interestRate -> {
-                bill.setUser(user);
-                bill.setInterestRate(interestRate);
-                return billRepository.save(bill);
-            }).orElseThrow(() -> new ResourceNotFoundException("User", "Id", userID));
-            return new Bill();
+            InterestRate interestRate = interestRateRepository.findById(interestRateId).orElseThrow(() -> new ResourceNotFoundException("Interest Rate", "Id", interestRateId));
+            if(interestRate == null){
+                throw new ResourceNotFoundException("InterestRate", "Id", interestRateId);
+            }
+            bill.setUser(user);
+            bill.setInterestRate(interestRate);
+            return billRepository.save(bill);
         }).orElseThrow(() -> new ResourceNotFoundException("User", "Id", userID));
     }
 
