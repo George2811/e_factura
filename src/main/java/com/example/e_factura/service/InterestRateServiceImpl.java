@@ -30,11 +30,13 @@ public class InterestRateServiceImpl implements InterestRateService {
 
     @Override
     public InterestRate createInterestRate(InterestRate interestRate) {
+        // TypeOfInterestRate no se está mapeando bien en el JPA, pues el dato es creado
         TypeOfInterestRate type = interestRate.getType();
         int time = interestRate.getRateTime();
         int period = interestRate.getCompoundingPeriod();
 
         InterestRate rate = interestRateRepository.findByTypeAndRateTimeAndCompoundingPeriod(type, time, period);
+        System.out.print(rate);
 
         if(rate != null){
             return interestRateRepository.findById(rate.getId()).orElseThrow(() -> new ResourceNotFoundException("Interest Rate", "Id", rate.getId()));

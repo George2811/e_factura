@@ -13,16 +13,14 @@ public class InterestRate implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotBlank
+    //@NotBlank
     @Column(nullable = false)
     @Enumerated(value = EnumType.STRING)
     private TypeOfInterestRate type;
 
-    @NotBlank
     @Column(name = "rate_time", nullable = false)
     private int rateTime;
 
-    @NotBlank
     @Column(name = "compounding_period", nullable = false)
     private int compoundingPeriod;
 

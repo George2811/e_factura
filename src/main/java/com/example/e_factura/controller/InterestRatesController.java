@@ -6,7 +6,6 @@ import com.example.e_factura.resource.InterestRateResource;
 import com.example.e_factura.resource.SaveInterestRateResource;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;

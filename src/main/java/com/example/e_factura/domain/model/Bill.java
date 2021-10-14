@@ -3,8 +3,6 @@ package com.example.e_factura.domain.model;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.Null;
 import java.io.Serializable;
 import java.util.Calendar;
 
@@ -20,7 +18,6 @@ public class Bill implements Serializable {
     @JsonIgnore
     private User user;
 
-    @NotBlank
     @Column(nullable = false, length = 100)
     private String name;
 
@@ -35,7 +32,6 @@ public class Bill implements Serializable {
     @Temporal(TemporalType.DATE)
     private Calendar expiration;
 
-    @NotBlank
     @Column(nullable = false)
     private double ratePercentage;
 
@@ -48,34 +44,27 @@ public class Bill implements Serializable {
     @Enumerated(value = EnumType.STRING)
     private TypeOfCurrency currency;
 
-    @NotBlank
     @Column(nullable = false, scale = 2)
     private double nominalValue;
 
-    @NotBlank
     @Column(nullable = false, scale = 2)
     private double initialExpenses;
 
-    @NotBlank
     @Column(nullable = false, scale = 2)
     private double finalExpenses;
 
     @Column(nullable = true, scale = 2)
     private double retention;
 
-    @NotBlank
     @Column(nullable = false)
     private double tcea;
 
-    @NotBlank
     @Column(nullable = false, scale = 2)
     private double netWorth;
 
-    @NotBlank
     @Column(nullable = false, scale = 2)
     private double deliveredValue;
 
-    @NotBlank
     @Column(nullable = false, scale = 2)
     private double receivedValue;
 

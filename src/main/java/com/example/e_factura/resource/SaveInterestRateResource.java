@@ -9,17 +9,15 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Null;
 
 public class SaveInterestRateResource {
-    @NotBlank
+
     @Column(nullable = false)
     @Enumerated(value = EnumType.STRING)
     private TypeOfInterestRate type;
 
-    @NotBlank
     @Column(name = "rate_time", nullable = false)
     private int rateTime;
 
-    @Null
-    @Column(name = "compounding_period", nullable = true)
+    @Column(name = "compounding_period", nullable = false)
     private int compoundingPeriod;
 
     public TypeOfInterestRate getType() {
