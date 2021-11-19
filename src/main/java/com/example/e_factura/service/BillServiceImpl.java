@@ -55,7 +55,7 @@ public class BillServiceImpl implements BillService {
     }
 
     @Override
-    public ResponseEntity<?> deleteBill(Long billId, Long userID) {
+    public ResponseEntity<?> deleteBill(Long userID, Long billId) {
         if(!userRepository.existsById(userID))
             throw new ResourceNotFoundException("User", "Id", userID);
         return billRepository.findById(billId).map(bill -> {
