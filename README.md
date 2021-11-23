@@ -5,7 +5,8 @@ La apliación permite registrar facturas y calcular la TCEA de la misma. Además
 El objetivo general a alcanzar es desarrollar eficazmente la implementación anteriormente explicada, aplicando nuevos conocimientos y nuestras experiencias ya adquiridas como estudiantes de la facultad de Ingeniería.
 
 ### Ficha Técnica
-La app fue desarrollada con en el framework Vue.js y desplegada con el hosting de Firebase. Además se hizo uso del framework de Material Design, Vuetify. Del mismo modo, la app consume la Api de EFactura.
+La Api fue desarrollada con en el framework Spring Boot de Java, y fue desplegada con el hosting Heroku. Además, se trabaja con la base de datos de MySQL.
+El enfoque usado es el Domain-Driven Design, por lo que profundizamos en la conexión entre la implementación y los conceptos del modelo y núcleo del negocio.
 
 ### Web
 https://webapp-efactura.web.app/
